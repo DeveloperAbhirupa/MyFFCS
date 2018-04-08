@@ -29,6 +29,19 @@ nav{
     font-family: 'Alegreya Sans', sans-serif !important;
 }
 
+
+
+
+.slotTable{
+    background-color: rgba(242,242,242,0.8) !important;
+    text-align: center!important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+td
+{
+    text-align: center!important;
+}
 #title, #fac{
     font-size: 3vh !important;
     color:black !important;
@@ -60,3 +73,8 @@ nav{
     max-width:70%;
 }
 /*CSS END*/
+
+.DataBase{
+    width: 100%;
+    overflow-x: scroll;
+}
