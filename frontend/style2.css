@@ -76,5 +76,7 @@ td
 
 .DataBase{
     width: 100%;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size:3vh;
     overflow-x: scroll;
 }
