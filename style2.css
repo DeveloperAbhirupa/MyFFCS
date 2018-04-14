@@ -4,6 +4,7 @@ body{
     height: 100%;
     background-size: cover ;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 
 
 }
@@ -38,7 +39,18 @@ nav{
     font-family: 'Montserrat', sans-serif !important;
 }
 
-td
+.FFCStable, .row1{
+    background-color: rgba(242,242,242,0.8) !important;
+    text-align: center!important;
+    max-width: 90%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-family: 'Montserrat', sans-serif !important;
+}
+td,th{
+    padding: 40px !important;
+}
+td,th
 {
     text-align: center!important;
 }
