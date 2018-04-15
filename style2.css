@@ -40,7 +40,7 @@ nav{
 }
 
 .FFCStable, .row1, .slotHead, .slot{
-    background-color: rgba(242,242,242,0.8) !important;
+    background-color: rgba(242,242,242,0.4) !important;
     text-align: center!important;
     max-width: 90%;
     border: 1px solid black;
@@ -61,6 +61,10 @@ nav{
 #text1{
     font-size: 3vh !important;
     margin-left: 15vh;
+}
+#text2{
+    font-size: 2.8vh !important;
+    font-family: 'Alegreya Sans', sans-serif !important;
 }
 
 td,th
