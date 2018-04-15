@@ -39,7 +39,7 @@ nav{
     font-family: 'Montserrat', sans-serif !important;
 }
 
-.FFCStable, .row1{
+.FFCStable, .row1, .slotHead, .slot{
     background-color: rgba(242,242,242,0.8) !important;
     text-align: center!important;
     max-width: 90%;
@@ -47,7 +47,7 @@ nav{
     border-collapse: collapse;
     font-family: 'Montserrat', sans-serif !important;
 }
-td,th{
+.slotTable, .slot{
     padding: 40px !important;
 }
 td,th
