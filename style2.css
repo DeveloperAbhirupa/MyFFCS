@@ -50,6 +50,19 @@ nav{
 .slotTable, .slot{
     padding: 40px !important;
 }
+.selectedCourse{
+    width:85%;
+    background-color: rgba(242,242,242,0.8) !important;
+    text-align: center!important;
+    font-size: 2.5vh !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+#text1{
+    font-size: 3vh !important;
+    margin-left: 15vh;
+}
+
 td,th
 {
     text-align: center!important;
