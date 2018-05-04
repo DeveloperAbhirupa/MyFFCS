@@ -2,14 +2,15 @@
 <html>
 <head>
     <link rel="stylesheet" href="style2.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:800|Montserrat" rel="stylesheet">
@@ -36,7 +37,7 @@
 
             <!--FORM STARTS  HERE----------------------------------------------------------------------------------------------->
 
-            <form role="form" action="http://redefinedffcs.herokuapp.com/" method="post">
+            <form role="form" action="#" method="post"> <!--http://redefinedffcs.herokuapp.com/timetable-->
             <div id="title"><div class="font1">COURSE CODE<br></div>   <!--Will be changed to course title later on-->
                 <div class="input-group i1">
                     <input type="text" id="i1" class="form-control f1" placeholder="Enter course code"> <!--Course code will be added later-->
@@ -48,12 +49,12 @@
                         <input type="text" id="i1" class="form-control f1" placeholder="Enter faculty (optional)">
                     </div><BR>
                 </div>
-                <div class="but1" align="left"><button type="submit" class="btn BFac btn-block"  value="submit"> REQUEST FACULTY</button></div>
+                <div class="but1" align="left"><button type="submit" class="btn BFac btn-block"  value="submit" onclick="access()"> REQUEST FACULTY</button></div>
             </form>
             </div>
 
         <!--FORM ends here----------------------------------------------------------------------------------------------->
-
+        <!--<p id="demo">CHANGE</p>-->
         <div class="col-sm-2"></div>
         <div class="col-sm-6 ">
             <!-- Switch -->
@@ -184,8 +185,8 @@
 
         </tr>
         <tr class="row1">
-            <td class="slot">A1</td>
-            <td class="slot">A2</td>
+            <td class="slot A1 L1 ">A1/L1</td>
+            <td class="slot F1 L2">A2</td>
             <td class="slot">A3</td>
             <td class="slot">A1</td>
             <td class="slot">A2</td>
@@ -313,5 +314,18 @@
 
 <br><Br>
 
-
+<script>
+    function access() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "http://redefinedffcs.herokuapp.com/nosignup/timetable", true);
+        console.log(xhttp);
+        console.log("Test1");
+        xhttp.send();
+    }
+</script>
 </body>
