@@ -43,10 +43,15 @@ nav{
     background-color: rgba(242,242,242,0.4) !important;
     text-align: center!important;
     max-width: 90%;
+    max-height: 2vh; !important;
     border: 1px solid black;
     border-collapse: collapse;
     font-family: 'Montserrat', sans-serif !important;
 }
+.FFCStable{
+    
+}
+
 .slotTable, .slot{
     padding: 40px !important;
 }
