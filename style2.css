@@ -80,6 +80,15 @@ td,th
     font-family: 'Alegreya Sans', sans-serif !important;
 }
 
+.BFac{
+    width:60% !important;
+    background: linear-gradient( to left, #1429ff, deeppink) !important;
+    opacity:0.8 !important;
+}
+.BFac:hover{
+    color: black; !important;
+}
+
 /*CSS FOR SWITCH*/
 /* The switch - the box around the slider */
 
