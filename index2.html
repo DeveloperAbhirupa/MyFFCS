@@ -447,37 +447,45 @@
     }
 
 
-    var venue;
-    var courseCode;
-    var courseTitle;
-    var type;
-    var slot="L33";
-    var faculty;
+    var venue;//Hardcoded data to be replaced by JSON
+    var courseCode;//Hardcoded data to be replaced by JSON
+    var courseTitle;//Hardcoded data to be replaced by JSON
+    var type="LAB";//Hardcoded data to be replaced by JSON
+    var slot="L33+"; //Hardcoded data to be replaced by JSON
+    var faculty;//Hardcoded data to be replaced by JSON
     var slotName=".";
-    var length=slot.length;
-    console.log(length);
 
-    var flag=0;
-    for(var i=0;i<length;i++)
-        if(slot[i]=="+"){
-            flag=1;
-            break;
-        }
-    if(flag==1)
-    {
-        for(var i=0;i<length;i++) {
-            if (slot[i] == "+") {
+    // console.log(length);
+
+
+    extractSlot();
+
+    function extractSlot() {
+        var flag=0;
+        var length=slot.length;
+        var i=0;
+        for(;i<length;i++) //Check if + sign is present which means there are more than 1 slots
+            if(slot[i]=="+"){
+                flag=1; //Flag to 1 if more than 1 slot present
                 break;
             }
-            slotName = slotName + slot[i];
+        if (flag == 1) {
+            slotName =slot.substr(0, i); //Store the first part of the slot in slotName
+            slot =slot.substr(0, i); //Store the later part of the slot in slot
+            changeSlotColor(slotName); //Call function to change color
+            if(slot.localeCompare("")!=0) // If slot has another part
+                extractSlot();
+        }
+
+        else {
+            slotName = slotName + slot; // Copy slot to slotName and call fxn to change color
+            changeSlotColor(slotName);
+            console
         }
     }
-    else
-        slotName=slotName+slot;
-
-    console.log(slotName,"slotName");
-    function changeSlotColor() {
-        $(slotName).addClass("lab");
+    // console.log(slotName,"slotName");
+    function changeSlotColor(s) {
+        $(s).addClass(type);
     }
 
     changeSlotColor();

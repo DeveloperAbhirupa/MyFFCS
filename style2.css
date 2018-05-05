@@ -53,11 +53,11 @@ nav{
     border-collapse: collapse;
     font-family: 'Montserrat', sans-serif !important;
 }
-.theory{
+.TH{
     background: linear-gradient(rgba(255, 163, 42, 0.5), rgba(238, 42, 104, 0.63))!important;
     color:black;
 }
-.lab{
+.LAB{
     background: linear-gradient(rgba(73, 89, 255, 0.5), rgba(57, 239, 71, 0.84))!important;
     color:black;
 }
