@@ -446,14 +446,23 @@
         xhttp.send();
     }
 
-    var slotName="."+"A1";
+    var slotName="."+"L23";
 
     function changeSlotColor()
     {
         // $("#A1").css({'background-color':'yellow'});
         // $('table tr td:nth-child(2)').css('background-color', 'red');
-        console.log("Bg color!" + slotName);
-        $(".slot:contains('A1')").addClass('greenBg');
+
+
+        // console.log("Bg color!" + slotName);
+        // $(".FFCStable td").each(function() {
+        //     if ($(this).text() == 'A1') {
+        //         $(this).css('Background', 'red');
+        //     }
+        // });
+
+        $(slotName).addClass("lab");
+        // $(".slot:contains('A1')").addClass('greenBg');
     }
 
     changeSlotColor();
