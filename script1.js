@@ -13,10 +13,11 @@ function access() {
 
 
 var venue;//Hardcoded data to be replaced by JSON
-var courseCode;//Hardcoded data to be replaced by JSON
+var courseCode="CSE2001";//Hardcoded data to be replaced by JSON
 var courseTitle;//Hardcoded data to be replaced by JSON
 var type="LAB";//Hardcoded data to be replaced by JSON
 var slot="L33+L36+L50+L51+L10+L11"; //Hardcoded data to be replaced by JSON
+var slotInit=slot; //Copying values
 var faculty;//Hardcoded data to be replaced by JSON
 var slotName=".";
 
@@ -39,7 +40,8 @@ function extractSlot() {
         slotName =slotName + slot.substr(0, i); //Store the first part of the slot in slotName
         slot =slot.substr(i+1, length); //Store the later part of the slot in slot
         console.log("slot", slotName);
-        changeSlotColor(slotName); //Call function to change color
+        changeSlotColor(slotName, courseCode); //Call function to change color
+        console.log("undefined", slotName, courseCode);
         if(slot.localeCompare("")!=0) // If slot has another part
             extractSlot();
     }
@@ -47,18 +49,25 @@ function extractSlot() {
     else {
         slotName=".";
         slotName = slotName + slot; // Copy slot to slotName and call fxn to change color
-        changeSlotColor(slotName);
-        console.log("slot", slotName);
+        changeSlotColor(slotName, courseCode);
+
     }
 }
+
+
+//Demo data feed
 type="TH";
-changeSlotColor(".A1");
-changeSlotColor(".B1");
-changeSlotColor(".E2");
-changeSlotColor(".C2");
+changeSlotColor(".A1", "CSE1003");
+changeSlotColor(".B1", "PHY1999");
+changeSlotColor(".E2", "CHY1701");
+changeSlotColor(".C2", "MAT2002");
+//Demo data feed end
+
 // console.log(slotName,"slotName");
-function changeSlotColor(s) {
+function changeSlotColor(s, code) {
+    var slotInit= s.substr(1, s.length);
     $(s).addClass(type);
+    $(s).html(code+"-"+ '<br/>'+slotInit);
 }
 
 changeSlotColor();
