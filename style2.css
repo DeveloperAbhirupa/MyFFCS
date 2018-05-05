@@ -6,8 +6,12 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
 
-
 }
+
+.greenBg {
+    background: green;
+}
+
 .brand-logo{
     margin-left:5vh !important;
     color:black !important;
@@ -52,11 +56,13 @@ nav{
     line-height: 18px !important;
 
 }
-
+/*.A1{*/
+    /*background-color: yellow !important;*/
+/*}*/
 
 
 .slotTable, .slot{
-    
+
 }
 .selectedCourse{
     width:85%;
