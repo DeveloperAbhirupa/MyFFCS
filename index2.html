@@ -451,12 +451,31 @@
     var courseCode;
     var courseTitle;
     var type;
-    var slot="B1+TB1";
+    var slot="L33";
     var faculty;
-
-    var length=length(slot);
+    var slotName=".";
+    var length=slot.length;
     console.log(length);
-    
+
+    var flag=0;
+    for(var i=0;i<length;i++)
+        if(slot[i]=="+"){
+            flag=1;
+            break;
+        }
+    if(flag==1)
+    {
+        for(var i=0;i<length;i++) {
+            if (slot[i] == "+") {
+                break;
+            }
+            slotName = slotName + slot[i];
+        }
+    }
+    else
+        slotName=slotName+slot;
+
+    console.log(slotName,"slotName");
     function changeSlotColor() {
         $(slotName).addClass("lab");
     }
