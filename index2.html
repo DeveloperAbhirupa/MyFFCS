@@ -446,23 +446,17 @@
         xhttp.send();
     }
 
-    var slotName="."+"L23";
 
-    function changeSlotColor()
-    {
-        // $("#A1").css({'background-color':'yellow'});
-        // $('table tr td:nth-child(2)').css('background-color', 'red');
+    var venue;
+    var courseCode;
+    var courseTitle;
+    var type;
+    var slot="B1+TB1";
+    var faculty;
 
-
-        // console.log("Bg color!" + slotName);
-        // $(".FFCStable td").each(function() {
-        //     if ($(this).text() == 'A1') {
-        //         $(this).css('Background', 'red');
-        //     }
-        // });
-
+    
+    function changeSlotColor() {
         $(slotName).addClass("lab");
-        // $(".slot:contains('A1')").addClass('greenBg');
     }
 
     changeSlotColor();
