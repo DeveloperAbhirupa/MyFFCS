@@ -12,7 +12,7 @@ $(document).ready(()=>{
     });
 
 });
-updateFreshCourses();
+updateFreshCourses(); //Function to be called when JSON object is received. STATUS:200 @Angad?
 console.log("OKAY");
 
 function updateFreshCourses(){
@@ -22,20 +22,24 @@ function updateFreshCourses(){
 var counter=0;
 var dataJSON=[];
 var totalEntries=3; //Hard coded
-dataJSON[0]={"venue":"SJT 305", "courseCode":"CSE2001", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};
+dataJSON[0]={"venue":"SJT 305", "courseCode":"CSE2001", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
+dataJSON[1]={"venue":"SJT 302", "courseCode":"CSE1002", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
+dataJSON[2]={"venue":"SJT 103", "courseCode":"PHY1999", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
 var n=dataJSON.length;
 var slotInit =[];
 var slotName=[];
 
-
+console.log("Entry length:", n);
 //------------------------------------------UPDATE TABLE-------------------------------------------//
 
-var data =dataJSON[counter]["slot"]+"|"+dataJSON[counter]["venue"]+"|"+dataJSON[counter]["faculty"]+"|";
-if (data.length >=23)
-  $("#fac"+(counter+1)).html(data.substr(0,23)+ data.substr(23, data.length));
-else {
-  $("#fac"+(counter+1)).html(data);
-}
+for(var l =0; l<n ;l++){  //Loop to update table
+  var data =dataJSON[l]["slot"]+"|"+dataJSON[l]["venue"]+"|"+dataJSON[l]["faculty"]+"|";
+  if (data.length >=23)
+      $("#fac"+(l+1)).html(data.substr(0,23)+ data.substr(23, data.length)+'<hr/>');
+  else
+      $("#fac"+(l+1)).html(data+'<hr/>');
+}//Table updated with course options
+
 
 
 
