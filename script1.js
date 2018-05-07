@@ -11,6 +11,9 @@ $(document).ready(()=>{
 });
 
 
+function updateFreshCourses(){
+
+
 //LET US ASSUME THAT THE FACULTY LIST IS STORED IN A ARRAY  OF DICTIONARY IN javascript
 var counter=0;
 var dataJSON=[];
@@ -97,7 +100,7 @@ function changeSlotColor(s, code) {
 
 }
 
-function addDataToList(s,c,t,v,f,cd)
+function addDataToList(s,c,t,v,f,cd) //Updating selected courses table
 {
     var table = document.getElementById("sec_Course");
     var row=table.insertRow(1);
@@ -116,3 +119,4 @@ function addDataToList(s,c,t,v,f,cd)
 
 }
 }//End of updateFrontend()
+}//ENd of updateFreshCourses()
