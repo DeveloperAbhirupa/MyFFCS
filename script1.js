@@ -14,9 +14,17 @@ $(document).ready(()=>{
 //LET US ASSUME THAT THE FACULTY LIST IS STORED IN A ARRAY  OF DICTIONARY IN javascript
 var counter=0;
 var dataJSON=[];
+var totalEntries=3; //Hard coded
 dataJSON[counter]={"venue":"SJT 305", "courseCode":"CSE2001", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};
 var slotInit =[];
 var slotName=[];
+
+
+/*Function: updateFrontend()
+T-> Will be invoked when a subject is clicked
+*/
+
+function updateFrontend(){
 slotInit[counter]=dataJSON[counter]["slot"];
 // var venue="SJT 305";//Hardcoded data to be replaced by JSON
 // var courseCode="CSE2001";//Hardcoded data to be replaced by JSON
@@ -107,3 +115,4 @@ function addDataToList(s,c,t,v,f,cd)
     cred.innerHTML=cd;
 
 }
+}//End of updateFrontend()
