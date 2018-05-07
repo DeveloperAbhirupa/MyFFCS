@@ -1,74 +1,90 @@
-function access() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "http://redefinedffcs.herokuapp.com/nosignup/timetable", true);
-    console.log(xhttp);
-    console.log("Test1");
-    xhttp.send();
-}
+$(document).ready(()=>{
+
+    $("#sb").on("click",(e)=>{
+        e.preventDefault();
+
+        $.post("http://redefinedffcs.herokuapp.com/timetable",{CODE:$("#i1").val().toUpperCase()},(data)=>{
+            alert(data);
+        });
+
+    });
+});
 
 
-var venue="SJT 305";//Hardcoded data to be replaced by JSON
-var courseCode="CSE2001";//Hardcoded data to be replaced by JSON
-var courseTitle="Introduction To Python";//Hardcoded data to be replaced by JSON
-var type="LAB";//Hardcoded data to be replaced by JSON
-var slot="L33+L36+L50+L51+L10+L11"; //Hardcoded data to be replaced by JSON
-var c=4; //Hardcoded data to be replaced by JSON
-var slotInit=slot; //Copying values
-var faculty="Dr. Rajkumar S";//Hardcoded data to be replaced by JSON
-var slotName=".";
+//LET US ASSUME THAT THE FACULTY LIST IS STORED IN A ARRAY  OF DICTIONARY IN javascript
+var counter=0;
+var dataJSON=[];
+dataJSON[counter]={"venue":"SJT 305", "courseCode":"CSE2001", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};
+var slotInit =[];
+var slotName=[];
+slotInit[counter]=dataJSON[counter]["slot"];
+// var venue="SJT 305";//Hardcoded data to be replaced by JSON
+// var courseCode="CSE2001";//Hardcoded data to be replaced by JSON
+// var courseTitle="Introduction To Python";//Hardcoded data to be replaced by JSON
+// var type="LAB";//Hardcoded data to be replaced by JSON
+// var slot="L33+L36+L50+L51+L10+L11"; //Hardcoded data to be replaced by JSON
+// var c=4; //Hardcoded data to be replaced by JSON
+// var slotInit=slot; //Copying values
+// var faculty="Dr. Rajkumar S";//Hardcoded data to be replaced by JSON
 
-addDataToList(slotInit, courseCode, courseTitle, venue, faculty, c);
+
+console.log(dataJSON[counter]["courseCode"],"TEST2");
+addDataToList(slotInit[counter], dataJSON[counter]["courseCode"], dataJSON[counter]["courseTitle"], dataJSON[counter]["venue"], dataJSON[counter]["faculty"] , dataJSON[counter]["c"]);
 // console.log(length);
 
+slotName[counter]=".";
 
 extractSlot();
 
 function extractSlot() {
     var flag=0;
-    var length=slot.length;
+    var length=dataJSON[counter]["slot"].length;
     var i=0;
     for(;i<length;i++) //Check if + sign is present which means there are more than 1 slots
-        if(slot[i]=="+"){
+        if(dataJSON[counter]["slot"][i]=="+"){
             flag=1; //Flag to 1 if more than 1 slot present
             break;
         }
+
     if (flag == 1) {
-        slotName=".";
-        slotName =slotName + slot.substr(0, i); //Store the first part of the slot in slotName
-        slot =slot.substr(i+1, length); //Store the later part of the slot in slot
-        console.log("slot", slotName);
-        changeSlotColor(slotName, courseCode); //Call function to change color
-        console.log("undefined", slotName, courseCode);
-        if(slot.localeCompare("")!=0) // If slot has another part
+        slotName[counter]=".";
+        slotName[counter] =slotName[counter] + dataJSON[counter]["slot"].substr(0, i); //Store the first part of the slot in slotName
+        console.log(slotName[counter],"testing 3");
+        dataJSON[counter]["slot"] =dataJSON[counter]["slot"].substr(i+1, length); //Store the later part of the slot in slot
+
+        changeSlotColor(slotName[counter], dataJSON[counter]["courseCode"]); //Call function to change color
+
+        if(dataJSON[counter]["slot"].localeCompare("")!=0) // If slot has another part
             extractSlot();
     }
 
     else {
-        slotName=".";
-        slotName = slotName + slot; // Copy slot to slotName and call fxn to change color
-        changeSlotColor(slotName, courseCode);
+        console.log("ELSE RUNNING");
+        slotName[counter]=".";
+        slotName[counter] = slotName[counter] + dataJSON[counter]["slot"]; // Copy slot to slotName and call fxn to change color
+        changeSlotColor(slotName[counter], dataJSON[counter]["courseCode"]);
+        console.log("LAST CALL");
+        return;
 
     }
 }
 
 
 //Demo data feed
-type="TH";
-changeSlotColor(".A1", "CSE1003");
-changeSlotColor(".B1", "PHY1999");
-changeSlotColor(".E2", "CHY1701");
-changeSlotColor(".C2", "MAT2002");
+// //type="TH";
+// changeSlotColor(".A1", "CSE1003");
+// changeSlotColor(".B1", "PHY1999");
+// changeSlotColor(".E2", "CHY1701");
+// changeSlotColor(".C2", "MAT2002");
 //Demo data feed end
 
 // console.log(slotName,"slotName");
+
+
 function changeSlotColor(s, code) {
+  console.log("substr property of undefined", s);
     var slotI= s.substr(1, s.length);
-    $(s).addClass(type);
+    $(s).addClass(dataJSON[counter]["type"]);
     $(s).html(code+"-"+ '<br/>'+slotI);
 
 }
@@ -91,9 +107,3 @@ function addDataToList(s,c,t,v,f,cd)
     cred.innerHTML=cd;
 
 }
-
-
-
-changeSlotColor();
-
-
