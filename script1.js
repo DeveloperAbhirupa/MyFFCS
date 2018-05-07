@@ -5,11 +5,15 @@ $(document).ready(()=>{
 
         $.post("http://redefinedffcs.herokuapp.com/timetable",{CODE:$("#i1").val().toUpperCase()},(data)=>{
             alert(data);
+
         });
 
-    });
-});
 
+    });
+
+});
+updateFreshCourses();
+console.log("OKAY");
 
 function updateFreshCourses(){
 
@@ -18,7 +22,7 @@ function updateFreshCourses(){
 var counter=0;
 var dataJSON=[];
 var totalEntries=3; //Hard coded
-dataJSON[counter]={"venue":"SJT 305", "courseCode":"CSE2001", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};
+dataJSON[0]={"venue":"SJT 305", "courseCode":"CSE2001", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};
 var n=dataJSON.length;
 var slotInit =[];
 var slotName=[];
@@ -26,6 +30,12 @@ var slotName=[];
 
 //------------------------------------------UPDATE TABLE-------------------------------------------//
 
+var data =dataJSON[counter]["slot"]+"|"+dataJSON[counter]["venue"]+"|"+dataJSON[counter]["faculty"]+"|";
+if (data.length >=23)
+  $("#fac"+(counter+1)).html(data.substr(0,23)+ data.substr(23, data.length));
+else {
+  $("#fac"+(counter+1)).html(data);
+}
 
 
 
@@ -127,5 +137,7 @@ function addDataToList(s,c,t,v,f,cd) //Updating selected courses table
     cred.innerHTML=cd;
 
 }
+counter++;
+
 }//End of updateFrontend()
 }//ENd of updateFreshCourses()
