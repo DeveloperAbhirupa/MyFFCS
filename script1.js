@@ -35,12 +35,13 @@ console.log("updateFreshCourses() running");
 //LET US ASSUME THAT THE FACULTY LIST IS STORED IN A ARRAY  OF DICTIONARY IN javascript
 counter=0;
 dataJSON=[];
-dataJSON[0]={"venue":"SJT 305", "courseCode":"CSE2001", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
+dataJSON[0]={"venue":"SJT 305", "courseCode":"CSE2001", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
 dataJSON[1]={"venue":"SJT 302", "courseCode":"CSE1002", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"A2+TA2", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
 dataJSON[2]={"venue":"SJT 103", "courseCode":"PHY1999", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"B2", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
 n=dataJSON.length;
 slotInit =[];
 slotName=[];
+var facID;
 //------------------------------------------UPDATE TABLE-------------------------------------------//
 
 for(var l =0; l<n ;l++){  //Loop to update table
@@ -55,7 +56,7 @@ for(var l =0; l<n ;l++){  //Loop to update table
 console.log("CHECK");
 
 }//End of updateFreshCourses()
-console.log(dataJSON[counter]["slot"],"Testing 02");
+
 
 
 
@@ -63,10 +64,21 @@ console.log(dataJSON[counter]["slot"],"Testing 02");
 T-> Will be invoked when a subject is clicked
 */
 
-var facID;
+var flag=0 // The next is being called 6 times, fixing bug forcefully
+
 $("div").click(function() {
+  if (flag==0){
     facID=(this.id); // or alert($(this).attr('id'));
-    
+    facID= parseInt(facID.substr(3,facID.length));
+    flag++;}
+  else if (flag==6) {
+    flag=0;
+  }
+  else {
+    flag++;
+  }
+
+    console.log("counter:", facID);
 });
 
 
