@@ -11,25 +11,36 @@ $(document).ready(()=>{
 
     });
 
+
 });
+
+
+//--------------------------------------------GLOBAL VARIABLES---------------------------
+var slotInit =[];
+var slotName=[];
+var counter=0;
+var dataJSON=[];
+var n;
+//-----------------------------------------------------------------------------------------
 updateFreshCourses(); //Function to be called when JSON object is received. STATUS:200 @Angad?
-console.log("OKAY");
+
+
+
+
 
 function updateFreshCourses(){
 
+console.log("updateFreshCourses() running");
 
 //LET US ASSUME THAT THE FACULTY LIST IS STORED IN A ARRAY  OF DICTIONARY IN javascript
-var counter=0;
-var dataJSON=[];
-var totalEntries=3; //Hard coded
+counter=0;
+dataJSON=[];
 dataJSON[0]={"venue":"SJT 305", "courseCode":"CSE2001", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
 dataJSON[1]={"venue":"SJT 302", "courseCode":"CSE1002", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
 dataJSON[2]={"venue":"SJT 103", "courseCode":"PHY1999", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36+L50+L51+L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
-var n=dataJSON.length;
-var slotInit =[];
-var slotName=[];
-
-console.log("Entry length:", n);
+n=dataJSON.length;
+slotInit =[];
+slotName=[];
 //------------------------------------------UPDATE TABLE-------------------------------------------//
 
 for(var l =0; l<n ;l++){  //Loop to update table
@@ -41,6 +52,10 @@ for(var l =0; l<n ;l++){  //Loop to update table
 }//Table updated with course options
 
 
+console.log("CHECK");
+
+}//End of updateFreshCourses()
+console.log(dataJSON[counter]["slot"],"Testing 02");
 
 
 
@@ -51,15 +66,8 @@ T-> Will be invoked when a subject is clicked
 
 
 function updateFrontend(){
+  console.log("WORKING 01");
 slotInit[counter]=dataJSON[counter]["slot"];
-// var venue="SJT 305";//Hardcoded data to be replaced by JSON
-// var courseCode="CSE2001";//Hardcoded data to be replaced by JSON
-// var courseTitle="Introduction To Python";//Hardcoded data to be replaced by JSON
-// var type="LAB";//Hardcoded data to be replaced by JSON
-// var slot="L33+L36+L50+L51+L10+L11"; //Hardcoded data to be replaced by JSON
-// var c=4; //Hardcoded data to be replaced by JSON
-// var slotInit=slot; //Copying values
-// var faculty="Dr. Rajkumar S";//Hardcoded data to be replaced by JSON
 
 
 console.log(dataJSON[counter]["courseCode"],"TEST2");
@@ -144,4 +152,3 @@ function addDataToList(s,c,t,v,f,cd) //Updating selected courses table
 counter++;
 
 }//End of updateFrontend()
-}//ENd of updateFreshCourses()
