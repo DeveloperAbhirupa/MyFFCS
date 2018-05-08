@@ -7,12 +7,9 @@ $(document).ready(()=>{
             alert(data);
 
         });
-
-
     });
-
-
 });
+
 
 
 //--------------------------------------------GLOBAL VARIABLES---------------------------
@@ -20,6 +17,7 @@ var slotInit =[];
 var slotName=[];
 var counter=0;
 var dataJSON=[];
+var facID;
 var n;
 //-----------------------------------------------------------------------------------------
 updateFreshCourses(); //Function to be called when JSON object is received. STATUS:200 @Angad?
@@ -41,7 +39,6 @@ dataJSON[2]={"venue":"SJT 103", "courseCode":"PHY1999", "courseTitle":"Introduct
 n=dataJSON.length;
 slotInit =[];
 slotName=[];
-var facID;
 //------------------------------------------UPDATE TABLE-------------------------------------------//
 
 for(var l =0; l<n ;l++){  //Loop to update table
@@ -53,42 +50,40 @@ for(var l =0; l<n ;l++){  //Loop to update table
 }//Table updated with course options
 
 
-console.log("CHECK");
 
 }//End of updateFreshCourses()
 
+//----------------------------------------------------------------------------------------------
 
 
+
+
+var flag=0; // The next is being called 6 times, fixing bug forcefully
+
+$(".fac").click(function() {
+    console.log("running", this.id, "with flag", flag);
+    facID=(this.id); // or alert($(this).attr('id'));
+    facID= parseInt(facID.substr(3,facID.length));
+    updateFrontend ();
+    console.log("runningIF", this.id);
+    flag++;
+
+});
+
+
+//--------------------------------------------------------------------------------------------------------------------------
 
 /*Function: updateFrontend()
 T-> Will be invoked when a subject is clicked
 */
 
-var flag=0 // The next is being called 6 times, fixing bug forcefully
-
-$("div").click(function() {
-  if (flag==0){
-    facID=(this.id); // or alert($(this).attr('id'));
-    facID= parseInt(facID.substr(3,facID.length));
-    flag++;}
-  else if (flag==6) {
-    flag=0;
-  }
-  else {
-    flag++;
-  }
-
-    console.log("counter:", facID);
-});
-
 
 
 function updateFrontend(){
-  console.log("WORKING 01");
+  facID--;
+console.log("SUPERMAN", facID);
+
 slotInit[facID]=dataJSON[facID]["slot"];
-
-
-console.log(dataJSON[facID]["courseCode"],"TEST2");
 addDataToList(slotInit[facID], dataJSON[facID]["courseCode"], dataJSON[facID]["courseTitle"], dataJSON[facID]["venue"], dataJSON[facID]["faculty"] , dataJSON[facID]["c"]);
 // console.log(length);
 
@@ -109,21 +104,18 @@ function extractSlot() {
     if (flag == 1) {
         slotName[facID]=".";
         slotName[facID] =slotName[facID] + dataJSON[facID]["slot"].substr(0, i); //Store the first part of the slot in slotName
-        console.log(slotName[facID],"testing 3");
         dataJSON[facID]["slot"] =dataJSON[facID]["slot"].substr(i+1, length); //Store the later part of the slot in slot
 
         changeSlotColor(slotName[facID], dataJSON[facID]["courseCode"]); //Call function to change color
 
-        if(dataJSON[fcaID]["slot"].localeCompare("")!=0) // If slot has another part
+        if(dataJSON[facID]["slot"].localeCompare("")!=0) // If slot has another part
             extractSlot();
     }
 
     else {
-        console.log("ELSE RUNNING");
         slotName[facID]=".";
         slotName[facID] = slotName[facID] + dataJSON[facID]["slot"]; // Copy slot to slotName and call fxn to change color
         changeSlotColor(slotName[facID], dataJSON[facID]["courseCode"]);
-        console.log("LAST CALL");
         return;
 
     }
@@ -142,7 +134,6 @@ function extractSlot() {
 
 
 function changeSlotColor(s, code) {
-  console.log("substr property of undefined", s);
     var slotI= s.substr(1, s.length);
     $(s).addClass(dataJSON[counter]["type"]);
     $(s).html(code+"-"+ '<br/>'+slotI);
@@ -165,7 +156,6 @@ function addDataToList(s,c,t,v,f,cd) //Updating selected courses table
     ven.innerHTML=v;
     facl.innerHTML=f;
     cred.innerHTML=cd;
-
 }
 
 
