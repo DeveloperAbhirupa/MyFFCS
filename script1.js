@@ -63,48 +63,54 @@ console.log(dataJSON[counter]["slot"],"Testing 02");
 T-> Will be invoked when a subject is clicked
 */
 
+var facID;
+$("div").click(function() {
+    facID=(this.id); // or alert($(this).attr('id'));
+    
+});
+
 
 
 function updateFrontend(){
   console.log("WORKING 01");
-slotInit[counter]=dataJSON[counter]["slot"];
+slotInit[facID]=dataJSON[facID]["slot"];
 
 
-console.log(dataJSON[counter]["courseCode"],"TEST2");
-addDataToList(slotInit[counter], dataJSON[counter]["courseCode"], dataJSON[counter]["courseTitle"], dataJSON[counter]["venue"], dataJSON[counter]["faculty"] , dataJSON[counter]["c"]);
+console.log(dataJSON[facID]["courseCode"],"TEST2");
+addDataToList(slotInit[facID], dataJSON[facID]["courseCode"], dataJSON[facID]["courseTitle"], dataJSON[facID]["venue"], dataJSON[facID]["faculty"] , dataJSON[facID]["c"]);
 // console.log(length);
 
-slotName[counter]=".";
+slotName[facID]=".";
 
 extractSlot();
 
 function extractSlot() {
     var flag=0;
-    var length=dataJSON[counter]["slot"].length;
+    var length=dataJSON[facID]["slot"].length;
     var i=0;
     for(;i<length;i++) //Check if + sign is present which means there are more than 1 slots
-        if(dataJSON[counter]["slot"][i]=="+"){
+        if(dataJSON[facID]["slot"][i]=="+"){
             flag=1; //Flag to 1 if more than 1 slot present
             break;
         }
 
     if (flag == 1) {
-        slotName[counter]=".";
-        slotName[counter] =slotName[counter] + dataJSON[counter]["slot"].substr(0, i); //Store the first part of the slot in slotName
-        console.log(slotName[counter],"testing 3");
-        dataJSON[counter]["slot"] =dataJSON[counter]["slot"].substr(i+1, length); //Store the later part of the slot in slot
+        slotName[facID]=".";
+        slotName[facID] =slotName[facID] + dataJSON[facID]["slot"].substr(0, i); //Store the first part of the slot in slotName
+        console.log(slotName[facID],"testing 3");
+        dataJSON[facID]["slot"] =dataJSON[facID]["slot"].substr(i+1, length); //Store the later part of the slot in slot
 
-        changeSlotColor(slotName[counter], dataJSON[counter]["courseCode"]); //Call function to change color
+        changeSlotColor(slotName[facID], dataJSON[facID]["courseCode"]); //Call function to change color
 
-        if(dataJSON[counter]["slot"].localeCompare("")!=0) // If slot has another part
+        if(dataJSON[fcaID]["slot"].localeCompare("")!=0) // If slot has another part
             extractSlot();
     }
 
     else {
         console.log("ELSE RUNNING");
-        slotName[counter]=".";
-        slotName[counter] = slotName[counter] + dataJSON[counter]["slot"]; // Copy slot to slotName and call fxn to change color
-        changeSlotColor(slotName[counter], dataJSON[counter]["courseCode"]);
+        slotName[facID]=".";
+        slotName[facID] = slotName[facID] + dataJSON[facID]["slot"]; // Copy slot to slotName and call fxn to change color
+        changeSlotColor(slotName[facID], dataJSON[facID]["courseCode"]);
         console.log("LAST CALL");
         return;
 
@@ -149,6 +155,6 @@ function addDataToList(s,c,t,v,f,cd) //Updating selected courses table
     cred.innerHTML=cd;
 
 }
-counter++;
+
 
 }//End of updateFrontend()
