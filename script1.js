@@ -20,6 +20,7 @@ var counter=0;
 var dataJSON=[];
 var facID;
 var n;
+var extractfacID; //Change
 //-----------------------------------------------------------------------------------------
 updateFreshCourses(); //Function to be called when JSON object is received. STATUS:200 @Angad?
 
@@ -41,6 +42,8 @@ dataJSON[1]={"venue":"SJT 302", "courseCode":"CSE1002", "courseTitle":"Web Devel
 dataJSON[2]={"venue":"SJT 103", "courseCode":"PHY1999", "courseTitle":"Innovative Projects in Physics", "type":"TH", "slot":"B2", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
 dataJSON[3]={"venue":"SJT 103", "courseCode":"CSE1003", "courseTitle":"Learnign OOPS", "type":"LAB", "slot":"L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
 n=dataJSON.length;
+
+
 slotInit =[];
 slotName=[];
 //------------------------------------------UPDATE TABLE-------------------------------------------//
@@ -65,22 +68,32 @@ for(var l =0; l<n ;l++){  //Loop to update table
 var flag=0; // The next is being called 6 times, fixing bug forcefully
 
 $(".fac").click(function() {
-    console.log("running", this.id, "with flag", flag);
     facID=(this.id); // or alert($(this).attr('id'));
     facID= parseInt(facID.substr(3,facID.length));
     updateFrontend ();
-    console.log("runningIF", this.id);
     flag++;
 
 });
 
 
 //--------------------------------------------------------------------------------------------------------------------------
+//Remove courses   -------------------change-------------------------------------------------------------
+$(document).on('click', '.close', function(){
+    extractfacID=parseInt((this.id).substr(2,(this.id).length));
+    console.log("Parsing id", extractfacID);
+    $("#row"+extractfacID).remove();
+    updateFrontend();
+});
+//-----------------------------------------End-----------------------------------------------------------
+
+
+
+
+
 
 /*Function: updateFrontend()
 T-> Will be invoked when a subject is clicked
 */
-
 
 
 function updateFrontend(){
@@ -148,6 +161,7 @@ function addDataToList(s,c,t,v,f,cd,id_cell) //Updating selected courses table
 {
     var table = document.getElementById("sec_Course");
     var row=table.insertRow(1);
+    row.id="row"+id_cell;//change
     var slot=row.insertCell(0);
     var code=row.insertCell(1);
     var title=row.insertCell(2);
