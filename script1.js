@@ -12,6 +12,7 @@ $(document).ready(()=>{
 
 
 
+
 //--------------------------------------------GLOBAL VARIABLES---------------------------
 var slotInit =[];
 var slotName=[];
@@ -87,7 +88,7 @@ function updateFrontend(){
 console.log("SUPERMAN", facID);
 
 slotInit[facID]=dataJSON[facID]["slot"];
-addDataToList(slotInit[facID], dataJSON[facID]["courseCode"], dataJSON[facID]["courseTitle"], dataJSON[facID]["venue"], dataJSON[facID]["faculty"] , dataJSON[facID]["c"]);
+addDataToList(slotInit[facID], dataJSON[facID]["courseCode"], dataJSON[facID]["courseTitle"], dataJSON[facID]["venue"], dataJSON[facID]["faculty"] , dataJSON[facID]["c"], facID); //CHANGE IN PARAMETR
 // console.log(length);
 
 slotName[facID]=".";
@@ -143,7 +144,7 @@ function changeSlotColor(s, code) {
 
 }
 
-function addDataToList(s,c,t,v,f,cd) //Updating selected courses table
+function addDataToList(s,c,t,v,f,cd,id_cell) //Updating selected courses table
 {
     var table = document.getElementById("sec_Course");
     var row=table.insertRow(1);
@@ -153,12 +154,19 @@ function addDataToList(s,c,t,v,f,cd) //Updating selected courses table
     var ven=row.insertCell(3);
     var facl=row.insertCell(4);
     var cred=row.insertCell(5);
+    var delt=row.insertCell(6);// CHANGE
+    delt.id="id"+id_cell;
+    $(".secHead").addClass(id_cell);
+    console.log("ID cell is :", delt.id);
+    console.log("Class names:", .className);
     slot.innerHTML=s;
     code.innerHTML=c;
     title.innerHTML=t;
     ven.innerHTML=v;
     facl.innerHTML=f;
     cred.innerHTML=cd;
+    delt.innerHTML="<b/><i class=\"fas fa-times cross\"/></b/>"; //CHANGE
+
 }
 
 

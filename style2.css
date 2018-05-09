@@ -20,6 +20,21 @@ body{
     font-family: 'Alegreya Sans', sans-serif !important;
 }
 
+/*change*/
+.cross {
+    color: red;
+}
+.Delete:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.fac:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+/*ENd*/
 
 .m{
     font-size: 3vh !important;
