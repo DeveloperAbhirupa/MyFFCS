@@ -80,9 +80,13 @@ $(".fac").click(function() {
 //Remove courses   -------------------change-------------------------------------------------------------
 $(document).on('click', '.close', function(){
     extractfacID=parseInt((this.id).substr(2,(this.id).length));
-    console.log("Parsing id", extractfacID);
     $("#row"+extractfacID).remove();
-    updateFrontend();
+    dataJSON[extractfacID]["slot"]=slotInit[extractfacID];
+    console.log("id",extractfacID);
+    console.log("Parsing dataJSON", dataJSON[extractfacID]["slot"]);
+
+
+    // updateFrontend();
 });
 //-----------------------------------------End-----------------------------------------------------------
 
