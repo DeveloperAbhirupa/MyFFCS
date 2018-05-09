@@ -24,7 +24,8 @@ body{
 .cross {
     color: red;
 }
-.Delete:hover{
+
+.close:hover{
     cursor: pointer;
     font-weight: bold;
 }

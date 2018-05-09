@@ -155,10 +155,10 @@ function addDataToList(s,c,t,v,f,cd,id_cell) //Updating selected courses table
     var facl=row.insertCell(4);
     var cred=row.insertCell(5);
     var delt=row.insertCell(6);// CHANGE
-    delt.id="id"+id_cell;
-    $(".secHead").addClass(id_cell);
-    console.log("ID cell is :", delt.id);
-    console.log("Class names:", .className);
+    delt.id="id"+id_cell;//change
+    var classN="close" ; //change
+    console.log("ID cell is :", delt.id); // change
+
     slot.innerHTML=s;
     code.innerHTML=c;
     title.innerHTML=t;
@@ -166,6 +166,8 @@ function addDataToList(s,c,t,v,f,cd,id_cell) //Updating selected courses table
     facl.innerHTML=f;
     cred.innerHTML=cd;
     delt.innerHTML="<b/><i class=\"fas fa-times cross\"/></b/>"; //CHANGE
+    $("#"+delt.id).addClass(classN);//CHANGE
+    console.log("Class names:", $("#"+delt.id).attr('class') );//CHANGE
 
 }
 
