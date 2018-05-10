@@ -21,6 +21,8 @@ var dataJSON=[];
 var facID;
 var n;
 var extractfacID; //Change
+
+
 //-----------------------------------------------------------------------------------------
 updateFreshCourses(); //Function to be called when JSON object is received. STATUS:200 @Angad?
 
@@ -70,7 +72,7 @@ var flag=0; // The next is being called 6 times, fixing bug forcefully
 $(".fac").click(function() {
     facID=(this.id); // or alert($(this).attr('id'));
     facID= parseInt(facID.substr(3,facID.length));
-    updateFrontend ();
+    updateFrontend (0);
     flag++;
 
 });
@@ -82,11 +84,8 @@ $(document).on('click', '.close', function(){
     extractfacID=parseInt((this.id).substr(2,(this.id).length));
     $("#row"+extractfacID).remove();
     dataJSON[extractfacID]["slot"]=slotInit[extractfacID];
-    console.log("id",extractfacID);
-    console.log("Parsing dataJSON", dataJSON[extractfacID]["slot"]);
-
-
-    // updateFrontend();
+    facID=extractfacID;
+    updateFrontend(1);
 });
 //-----------------------------------------End-----------------------------------------------------------
 
@@ -100,15 +99,14 @@ T-> Will be invoked when a subject is clicked
 */
 
 
-function updateFrontend(){
-  facID--;
-console.log("SUPERMAN", facID);
+function updateFrontend(flag02){
 
-slotInit[facID]=dataJSON[facID]["slot"];
-addDataToList(slotInit[facID], dataJSON[facID]["courseCode"], dataJSON[facID]["courseTitle"], dataJSON[facID]["venue"], dataJSON[facID]["faculty"] , dataJSON[facID]["c"], facID); //CHANGE IN PARAMETR
-// console.log(length);
-
-slotName[facID]=".";
+if(flag02==0) {   // Replaced 2x changes
+    facID--;
+    slotInit[facID] = dataJSON[facID]["slot"];
+    addDataToList(slotInit[facID], dataJSON[facID]["courseCode"], dataJSON[facID]["courseTitle"], dataJSON[facID]["venue"], dataJSON[facID]["faculty"], dataJSON[facID]["c"], facID); //CHANGE IN PARAMETR
+}
+    slotName[facID]=".";
 
 extractSlot();
 
@@ -143,20 +141,15 @@ function extractSlot() {
 }
 
 
-//Demo data feed
-// //type="TH";
-// changeSlotColor(".A1", "CSE1003");
-// changeSlotColor(".B1", "PHY1999");
-// changeSlotColor(".E2", "CHY1701");
-// changeSlotColor(".C2", "MAT2002");
-//Demo data feed end
-
-// console.log(slotName,"slotName");
 
 
 function changeSlotColor(s, code) {
     var slotI= s.substr(1, s.length);
-    $(s).addClass(dataJSON[counter]["type"]);
+    if($(s).hasClass("TH")==true)//Change
+    {
+        $(".TH").remove();
+    }
+    $(s).addClass("TH");//Change
     $(s).html(code+"-"+ '<br/>'+slotI);
 
 }
@@ -175,7 +168,6 @@ function addDataToList(s,c,t,v,f,cd,id_cell) //Updating selected courses table
     var delt=row.insertCell(6);// CHANGE
     delt.id="id"+id_cell;//change
     var classN="close" ; //change
-    console.log("ID cell is :", delt.id); // change
 
     slot.innerHTML=s;
     code.innerHTML=c;
@@ -185,7 +177,6 @@ function addDataToList(s,c,t,v,f,cd,id_cell) //Updating selected courses table
     cred.innerHTML=cd;
     delt.innerHTML="<b/><i class=\"fas fa-times cross\"/></b/>"; //CHANGE
     $("#"+delt.id).addClass(classN);//CHANGE
-    console.log("Class names:", $("#"+delt.id).attr('class') );//CHANGE
 
 }
 
