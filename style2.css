@@ -20,6 +20,33 @@ body{
     font-family: 'Alegreya Sans', sans-serif !important;
 }
 
+/*BAKER*/
+.slotLabel:hover{
+    font-weight: bold;
+    cursor:pointer;
+}
+.testSlot{
+    background: linear-gradient(rgba(142, 43, 255, 0.5), rgba(12, 43, 238, 0.63))!important;
+    transition: 0.8s;
+}
+.textBold{
+    font-weight: bold;
+}
+.row1{
+    height:70px !important;
+}
+.week{
+    width:100px; !important;
+    padding:1px !important;
+}
+.l{
+    width: 70px;
+}
+.FFCStable{
+    table-layout: fixed;
+}
+/*Baker ends*/
+
 /*change*/
 .cross {
     color: red;
@@ -66,7 +93,6 @@ nav{
     text-align: center!important;
     border: 1px solid black;
     border-collapse: collapse;
-    padding:2px !important;
 
     size: 4px!important;
     font-family: 'Montserrat', sans-serif !important;

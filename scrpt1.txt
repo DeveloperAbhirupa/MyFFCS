@@ -21,7 +21,7 @@ var dataJSON=[];
 var facID;
 var n;
 var extractfacID; //Change
-var state = "L";
+
 
 //-----------------------------------------------------------------------------------------
 updateFreshCourses(); //Function to be called when JSON object is received. STATUS:200 @Angad?
@@ -39,10 +39,10 @@ console.log("updateFreshCourses() running");
 //Extract it from the object and store it in dataJSON
 counter=0;
 dataJSON=[];
-dataJSON[0]={"venue":"TT 305", "courseCode":"CSE2001", "courseTitle":"Introduction To Python", "type":"ELA", "slot":"L33+L36", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
-dataJSON[1]={"venue":"SJT 302", "courseCode":"CSE1002", "courseTitle":"Web Development", "type":"ETH", "slot":"A2+TA2", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
-dataJSON[2]={"venue":"SJT 103", "courseCode":"PHY1999", "courseTitle":"Innovative Projects in Physics", "type":"ETH", "slot":"B2", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
-dataJSON[3]={"venue":"SJT 103", "courseCode":"CSE1003", "courseTitle":"Learnign OOPS", "type":"ELA", "slot":"L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
+dataJSON[0]={"venue":"SJT 305", "courseCode":"CSE2001", "courseTitle":"Introduction To Python", "type":"LAB", "slot":"L33+L36", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
+dataJSON[1]={"venue":"SJT 302", "courseCode":"CSE1002", "courseTitle":"Web Development", "type":"TH", "slot":"A2+TA2", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
+dataJSON[2]={"venue":"SJT 103", "courseCode":"PHY1999", "courseTitle":"Innovative Projects in Physics", "type":"TH", "slot":"B2", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
+dataJSON[3]={"venue":"SJT 103", "courseCode":"CSE1003", "courseTitle":"Learnign OOPS", "type":"LAB", "slot":"L10+L11", "c":"4", "faculty":"Dr. Rajkumar S"};//Hardcoded
 n=dataJSON.length;
 
 
@@ -50,20 +50,12 @@ slotInit =[];
 slotName=[];
 //------------------------------------------UPDATE TABLE-------------------------------------------//
 
-    console.log("Filling tables");  //Superman
-    var count0=0;
 for(var l =0; l<n ;l++){  //Loop to update table
-    // console.log("Substring extracted",(dataJSON[l]["type"][1])," and state value", state);//superman
-    // console.log("Comparison result:", (dataJSON[l]["type"][1].localeCompare(state) == 0));//superman
-    if((dataJSON[l]["type"][1].localeCompare(state) == 0)) //Superman
-    {
-        var data = dataJSON[l]["slot"] + "|" + dataJSON[l]["venue"] + "|" + dataJSON[l]["faculty"] + "|";
-        if (data.length >= 23)
-            $("#fac" + (count0 + 1)).html(data.substr(0, 23) + data.substr(23, data.length) + '<hr/>');
-        else
-            $("#fac" + (count0 + 1)).html(data + '<hr/>');
-        count0 = count0 +1;
-    }
+  var data =dataJSON[l]["slot"]+"|"+dataJSON[l]["venue"]+"|"+dataJSON[l]["faculty"]+"|";
+  if (data.length >=23)
+      $("#fac"+(l+1)).html(data.substr(0,23)+ data.substr(23, data.length)+'<hr/>');
+  else
+      $("#fac"+(l+1)).html(data+'<hr/>');
 }//Table updated with course options
 
 
@@ -100,18 +92,14 @@ $(".slotLabel").on("click", function(){
     temp2=temp2.substr(0,1)+(this.id); //Extracting th
 });
 
-state="L"; //Initializing state of slider to Lab
 $('#sw1').on('click', function(){
 
     if ($('#sw1').is(":checked"))
     {
-        state="T";
-        console.log(state);
+        console.log("On");
     } else {
-        state="L";
-        console.log(state);
+        console.log("Off");
     }
-    updateFreshCourses();
 });
 
 
@@ -124,49 +112,6 @@ var flag=0;
 $(".fac").click(function() {
     facID=(this.id); // or alert($(this).attr('id'));
     facID= parseInt(facID.substr(3,facID.length));
-    console.log("id clicked",facID); //superman
-    var id0="\#"+facID;
-    var html_cont = document.getElementById(this.id).innerHTML;
-    html_cont=html_cont+"|";
-    // console.log("HTML content", html_cont);
-    var slot, ven,fac0,i0,i1;
-    for(i0=0;i0<html_cont.length;i0++) //Extract slot
-    {
-        if(html_cont[i0].localeCompare("|")==0)
-            break;
-    }
-    slot=html_cont.substr(0,i0);
-    for(i1=i0+1;i1<html_cont.length;i1++) //Extract slot
-    {
-        if(html_cont[i1].localeCompare("|")==0) {
-            console.log("breaking at", html_cont[i1]);
-            break;
-        }
-    }
-    ven=html_cont.substring(i0+1,i1);
-    // console.log("venue", ven," from",i0+1," to ", i1);
-    // console.log("ven", ven , "start at:",html_cont[i0+1],"ending at", html_cont[i1], "cotent being", html_cont);
-    for(i0=i1+1;i0<html_cont.length;i0++) //Extract slot
-    {
-        if(html_cont[i0].localeCompare("|")==0) {
-            break;
-        }
-    }
-    fac0=html_cont.substring(i1+1,i0);
-    console.log("SLOT", slot, "code", ven, " faculty", fac0);
-    var facIDReplace=-1;
-    for(var findC=0; findC<n; findC++)
-    {
-        if(dataJSON[findC]["slot"].localeCompare(slot)==0 && dataJSON[findC]["venue"].localeCompare(ven)==0 && dataJSON[findC]["faculty"].localeCompare(fac0)==0) {
-            facIDReplace = findC;
-            break;
-        }
-    }
-    console.log("Tracked ID:", facIDReplace);
-    facID=facIDReplace;
-
-
-
     updateFrontend (0);
     flag++;
 
@@ -197,9 +142,9 @@ T-> Will be invoked when a subject is clicked
 
 
 function updateFrontend(flag02){
+
 if(flag02==0) {   // Replaced 2x changes
-    // facID--;
-    // console.log("Handling f")
+    facID--;
     slotInit[facID] = dataJSON[facID]["slot"];
     addDataToList(slotInit[facID], dataJSON[facID]["courseCode"], dataJSON[facID]["courseTitle"], dataJSON[facID]["venue"], dataJSON[facID]["faculty"], dataJSON[facID]["c"], facID); //CHANGE IN PARAMETR
 }
