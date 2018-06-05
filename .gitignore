@@ -1,0 +1,5 @@
+Procfile
+.env
+node_modules
+mock
+data

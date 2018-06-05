@@ -125,7 +125,7 @@ $(".fac").click(function() {
     facID=(this.id); // or alert($(this).attr('id'));
     facID= parseInt(facID.substr(3,facID.length));
     console.log("id clicked",facID); //superman
-    var id0="\#"+facID;
+
     var html_cont = document.getElementById(this.id).innerHTML;
     html_cont=html_cont+"|";
     // console.log("HTML content", html_cont);
